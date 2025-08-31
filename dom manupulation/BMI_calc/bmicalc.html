@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #2B2B2B;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: "poppins";
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 290px;
+            width: 250px;
+            padding: 15px;
+            box-shadow: 0 0px 15px #ffffff5f;
+            border-radius: 7px;
+        }
+
+        .container h2 {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 550;
+            font-family: "poppins";
+            color: rgb(255, 255, 255);
+            letter-spacing: 1px;
+            filter: drop-shadow(0px 0px 14px rgb(255, 255, 255));
+        }
+
+        .container .calc {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .calc input {
+            margin-top: 15px;
+            padding: 10px;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            box-shadow: inset 0 0px 7px rgba(255, 255, 255, 0.5);
+            background-color: transparent;
+            color: coral;
+            font-weight: 550;
+        }
+
+        .calc button {
+            margin: 20px 0 0 0;
+            width: 100%;
+            padding: 10px;
+            outline: none;
+            border: none;
+            font-size: 18px;
+            border-radius: 5px;
+            box-shadow: 0 0px 10px rgba(255, 255, 255, 0.5);
+            background-color: transparent;
+            color: #ffffff;
+            transition: all 0.2s ease;
+            font-weight: 550;
+            cursor: pointer;
+        }
+
+        .calc button:hover {
+            box-shadow: 0 0px 10px #06ffded5;
+        }
+
+        .calc button:active {
+            scale: 90%;
+
+        }
+
+        #result {
+            margin-top: 15px;
+            padding: 5px 10px;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            box-shadow: inset 0 0px 7px rgba(255, 255, 255, 0.5);
+            background-color: transparent;
+            color: rgba(208, 208, 208, 0.661);
+            font-weight: 550;
+            font-size: 18px;
+        }
+    </style>
+
+
+    <div class="container">
+        <h2>BMI CALCULATOR</h2>
+        <span id="result"></span>
+
+        <form class="calc">
+            <input type="text" id="height" placeholder="Hieght in cm">
+            <input type="text" id="weight" placeholder="Weight in kg">
+            <button type="submit">Calculate</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const h = parseInt(document.getElementById('height').value);
+            const w = parseInt(document.getElementById('weight').value);
+            const result = document.getElementById('result');
+
+            if (h === "" || h < 0 || isNaN(h) || w === '' || w < 0 || isNaN(w)) {
+                result.style.color = "#f93764";
+                result.innerText = "Error : Invalid details !";
+            }
+            else {
+                let bmi = Math.floor((w / (h * h / 10000)) * 100) / 100;
+
+                result.style.color = "#1b9d7a";
+                if (bmi < 18.50) {
+                    result.style.color = "#f93764";
+                    result.innerText = bmi + " ( Underweight )";
+                }
+                else if (bmi >= 18.50 && bmi < 25.00) {
+                    result.innerText = bmi + " ( Normal )";
+
+                }
+                else {
+                    result.style.color = "#f93764";
+                    result.innerText = bmi + " ( Overweight )";
+                }
+
+            }
+        });
+
+    </script>
+</body>
+
+</html>

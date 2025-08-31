@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Game</title>
+</head>
+
+<body>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #121214;
+            height: 100vh;
+            font-family: "poppins";
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            width: 350px;
+            height: 450px;
+            border-radius: 11px;
+            padding-bottom: 20px;
+        }
+
+        .container h1 {
+            filter: drop-shadow(0 0 11px rgba(255, 255, 255, 0.94));
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 28px;
+            font-family: "poppins";
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            flex-wrap: wrap;
+            margin: 0 auto;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px auto;
+            width: 90%;
+        }
+
+        input {
+            height: 41px;
+            width: 100%;
+            padding: 3px 10px;
+            font-size: 18px;
+            background: transparent;
+            outline: none;
+            border: none;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4);
+            border-radius: 7px;
+            color: #ffffff;
+        }
+
+        .form button {
+            margin: 30px 0 0 0;
+            width: 100%;
+            padding: 10px;
+            outline: none;
+            border: none;
+            font-size: 18px;
+            border-radius: 5px;
+            box-shadow: 0 0px 10px rgba(255, 255, 255, 0.5);
+            background-color: transparent;
+            color: #ffffff;
+            transition: all 0.2s ease;
+            font-weight: 550;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            box-shadow: 0 0px 10px #06ffded5;
+        }
+
+        .form button:active {
+            scale: 90%;
+
+        }
+
+        .container h2 {
+            filter: drop-shadow(0 0 11px rgba(255, 255, 255, 0.5));
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 16px;
+            font-family: "poppins";
+            margin: 10px 0 5px 20px;
+        }
+
+        .result {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    </style>
+
+
+    <div class="container">
+        <h1>Guess the Number</h1>
+        <form action="" class="form">
+            <input type="number" name="" id="number" placeholder="Enter Your Guess">
+            <button type="submit" id="submit">Guess</button>
+        </form>
+        <div class="result">
+            <h2>Status : <span id="status"></span></h2>
+            <h2>Correct Answer : <span id="correct"></span></h2>
+            <h2>Your Pervious Guess : <span id="guesses"></span></h2>
+            <h2>Attempts remaining : <span id="remaining"></span></h2>
+            <h2 style="color: #e7e248;">Rules : you will get 10 attempts guess number between 0 and 25 </span></h2>
+        </div>
+    </div>
+
+    <script>
+        const data = document.querySelector('#submit');
+        const attempts = document.getElementById('remaining');
+        const guesses = document.getElementById('guesses');
+        const status = document.getElementById('status');
+        const correct = document.getElementById('correct');
+        let start = 10;
+        let count = 0;
+        const arr = [];
+        const correctAns = [];
+        attempts.innerText = start;
+
+        data.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const number = parseInt(document.getElementById('number').value);
+
+            if (number < 0 || isNaN(number) || number > 25) {
+                alert("Please enter a valid number!");
+                return;
+            }
+
+            let myNum = Math.floor(Math.random() * 26);
+
+            if (number === myNum) {
+                count++;
+                correctAns.push(number);
+                status.innerText = "Correct answer !";
+                status.style.color = "#137754";
+            } else {
+                status.style.color = "#dc0e4c";
+                status.innerText = "Wrong answer !";
+            }
+
+            correct.innerText = myNum;
+            correct.style.color = "#137754";
+            arr.push(number);
+            guesses.innerText = arr.join(', ');
+            document.getElementById('number').value = "";
+
+            start -= 1;
+            attempts.innerText = start;
+
+            if (start === 0) {
+                alert(`Game over! Your score is ${count}`);
+                start = 10;
+                count = 0;
+                arr.length = 0;
+                correctAns.length = 0;
+                attempts.innerText = start;
+                guesses.innerText = '';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

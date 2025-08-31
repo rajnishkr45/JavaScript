@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <style>
+        @font-face {
+            font-family: "digital";
+            src: url(digital.ttf);
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0d13;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: "digital";
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            width: 280px;
+            padding: 11px;
+            border-radius: 17px;
+            animation: clock 3s infinite;
+        }
+
+        .container h2 {
+            text-align: center;
+            font-size: 58px;
+            font-weight: 550;
+            color: rgb(255, 255, 255);
+            letter-spacing: 1.5px;
+            filter: drop-shadow(0px 0px 14px rgb(255, 255, 255));
+        }
+
+        @keyframes clock {
+            0% {
+                box-shadow: 0 0 15px rgba(25, 235, 242, 0.5);
+            }
+
+            25% {
+                box-shadow: 0 0 15px rgba(244, 32, 92, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 15px rgba(255, 224, 69, 0.5);
+            }
+
+            75% {
+                box-shadow: 0 0 15px rgba(18, 186, 94, 0.5);
+            }
+
+            100% {
+                box-shadow: 0 0 15px rgba(25, 235, 242, 0.5);
+            }
+        }
+    </style>
+
+
+    <div class="container">
+        <h2 id="clock"></h2>
+    </div>
+
+    <script>
+        const clock = document.getElementById("clock");
+
+        setInterval(function () {
+            let time = new Date;
+            clock.innerText = (time.toLocaleTimeString());
+        }, 1000)
+
+    </script>
+</body>
+
+</html>

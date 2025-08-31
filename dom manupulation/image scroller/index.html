@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width='device-width', initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <img src="../img/1.jpg" alt="" style="display: block;">
+        <img src="../img/2.jpg" alt="">
+        <img src="../img/3.jpg" alt="">
+        <img src="../img/4.jpg" alt="">
+
+    </div>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #444444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* height: 100vh; */
+        }
+
+        .container {
+            margin-top: 51px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            height: 351px;
+            width: calc(100vw - 50px);
+            overflow: hidden;
+        }
+
+        img {
+            height: 351px;
+            width: calc(100vw - 50px);
+            position: absolute;
+            object-fit: cover;
+            transition: all 0.5s ease-in-out;
+            display: none;
+        }
+    </style>
+
+    <script>
+        const img = document.querySelectorAll('img');
+        let currentImg = 1;
+
+        setInterval(() => {
+            img.forEach((pic) => {
+                pic.style.display = "none"
+            })
+
+            img[currentImg].style.display = "block";
+
+            currentImg = (currentImg + 1) % img.length;
+        }, 3000)
+    </script>
+</body>
+
+</html>

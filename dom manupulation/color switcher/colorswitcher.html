@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #2B2B2B;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .buttons button:active {
+            scale: 90%;
+        }
+
+        .buttons button {
+            height: 70px;
+            width: 70px;
+            margin: 20px;
+            outline: none;
+            border: solid 2.5px #fff;
+            border-radius: 50% 50%;
+            box-shadow: 0 2px 15px rgba(255, 255, 255, 0.658);
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .buttons button:nth-child(1) {
+            background-color: #5c79ed;
+        }
+
+        .buttons button:nth-child(2) {
+            background-color: #878787;
+        }
+
+        .buttons button:nth-child(3) {
+            background-color: #f93764;
+        }
+
+        .buttons button:nth-child(4) {
+            background-color: #1b9d7a;
+        }
+
+        .buttons button:nth-child(5) {
+            background-color: #2B2B2B;
+        }
+    </style>
+
+    <div class="buttons">
+        <button class="blue"></button>
+        <button class="grey"></button>
+        <button class="red"></button>
+        <button class="green"></button>
+        <button class="black"></button>
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll("button");
+        const body = document.querySelector("body");
+
+        buttons.forEach((button) => {
+
+            button.addEventListener('click', function (e) {
+
+                if (e.target.className === "blue") {
+                    body.style.backgroundColor = "#5c79ed";
+                }
+                else if (e.target.className === "grey") {
+                    body.style.backgroundColor = "#878787";
+                }
+                else if (e.target.className === "red") {
+                    body.style.backgroundColor = "#f93764";
+                }
+                else if (e.target.className === "green") {
+                    body.style.backgroundColor = "#1b9d7a";
+                }
+                else {
+                    body.style.backgroundColor = "#2B2B2B";
+                }
+            })
+
+        });
+
+    </script>
+
+</body>
+
+</html>

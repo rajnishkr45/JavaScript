@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bg Changer</title>
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #2B2B2B;
+
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .buttons button:active {
+        scale: 90%;
+    }
+
+    .buttons button {
+        font-family: "poppins";
+        height: 70px;
+        width: 70px;
+        margin: 20px;
+        outline: none;
+        border: solid 2.5px #fff;
+        color: #fff;
+        font-size: 18px;
+        border-radius: 50% 50%;
+        box-shadow: 0 2px 15px rgba(255, 255, 255, 0.658);
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .buttons button:nth-child(2) {
+        background-color: #f93764;
+    }
+
+    .buttons button:nth-child(1) {
+        background-color: #1b9d7a;
+    }
+</style>
+
+<body>
+    <div class="buttons">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+    </div>
+</body>
+
+<script>
+
+    const start = document.getElementById('start')
+    const stop = document.getElementById('stop')
+
+    const color = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
+
+    function getRandomColor() {
+        let colorCode = "#";
+        for (i = 0; i < 6; i++) {
+            colorCode += color[Math.floor(Math.random() * 16)]
+        }
+        return colorCode;
+    }
+
+    let changeMe;
+
+    start.addEventListener('click', () => {
+        changeMe = document.querySelector('body').style.backgroundColor = getRandomColor();
+        setInterval(changeMe, 1000)
+    })
+
+
+</script>
+
+</html>
